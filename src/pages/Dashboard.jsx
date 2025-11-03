@@ -13,9 +13,6 @@ import { useHydrateParent } from '../hooks/useHydrateParent.js';
 const Dashboard = () => {
   const navigate = useNavigate();
   const { parentData, currentLesson, loading } = useHydrateParent();
-  
-  // Demo: Mock athlete name - no real auth
-  const athleteName = 'Johnny';
 
   if (loading) {
     return (
@@ -29,13 +26,26 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Header />
       <main className="flex-1 container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Welcome back!
-          </h1>
-          <p className="text-gray-600">
-            Here's what's happening with {athleteName}'s running program this week
-          </p>
+        {/* School Banner */}
+        {currentLesson?.school && (
+          <div className="mb-6 bg-orange-500 text-white py-3 px-6 rounded-lg text-center">
+            <h2 className="text-2xl font-bold">{currentLesson.school}</h2>
+          </div>
+        )}
+
+        {/* Week Focus and Date */}
+        <div className="mb-6">
+          <div className="mb-2">
+            <h1 className="text-3xl font-bold text-gray-900">
+              {currentLesson?.title || 'Current Week'}
+            </h1>
+          </div>
+          {currentLesson?.date && (
+            <div className="flex items-center space-x-2 text-gray-600 mb-4">
+              <Calendar className="w-5 h-5" />
+              <span className="text-lg">{currentLesson.date}</span>
+            </div>
+          )}
         </div>
 
         <div className="mb-6">

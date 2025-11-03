@@ -1,114 +1,91 @@
 import React, { useState, useEffect } from 'react';
+import { parentApi, apiRequest } from '../lib/api.js';
 
-// Demo: Mock parent data
-const mockParentData = {
-  id: '1',
-  name: 'John Doe',
-  email: 'john@example.com',
-  athletes: [
-    { id: '1', name: 'Alex Doe', age: 10, grade: '5th' }
-  ]
-};
-
-const mockCurrentLesson = {
-  id: '1',
-  title: 'Speed and Endurance Training',
-  description: 'Focus on building speed and maintaining endurance over longer distances',
-  date: 'January 15, 2025',
-  duration: '45 minutes',
-  location: 'Downtown Track',
-  workout: [
-    {
-      name: 'Warm-up Run',
-      description: 'Easy jog for 5 minutes',
-      duration: '5 min',
-      reps: null
-    },
-    {
-      name: 'Sprint Intervals',
-      description: '8 x 100m sprints with 1 minute rest',
-      duration: '15 min',
-      reps: '8 sets'
-    },
-    {
-      name: 'Endurance Run',
-      description: 'Moderate pace run for 1 mile',
-      duration: '10 min',
-      reps: '1 mile'
-    },
-    {
-      name: 'Cool-down',
-      description: 'Gentle walk and stretching',
-      duration: '5 min',
-      reps: null
-    }
-  ],
-  focusAreas: ['Speed', 'Endurance', 'Form'],
-  notes: 'Focus on maintaining good running form during sprints. Rest is important between intervals.'
-};
-
-const mockFeedback = [
-  {
-    rating: 4,
-    date: 'January 8, 2025',
-    notes: 'Alex showed great improvement in endurance this week. Maintained good pace throughout the workout. Continue working on breathing technique.'
-  }
-];
-
-export const useHydrateParent = () => {
+/**
+ * Hook to hydrate parent data from backend
+ * Follows FRONTEND_BUILDS_FOR_GOFAST.md hydration pattern:
+ * - Entity-specific route: /api/bgr/parent/:parentId/hydrate
+ * - localStorage caching with key pattern: bgr_parent_${parentId}_data
+ * - Always hydrate when landing on parent dashboard
+ */
+export const useHydrateParent = (parentId) => {
   const [parentData, setParentData] = useState(null);
   const [currentLesson, setCurrentLesson] = useState(null);
   const [feedback, setFeedback] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Demo: Simulate API call
+    if (!parentId) {
+      // For demo purposes, use default parentId if not provided
+      // In production, parentId should come from auth/session
+      const defaultParentId = localStorage.getItem('bgr_parent_id') || '1';
+      parentId = defaultParentId;
+    }
+
     const hydrate = async () => {
       setLoading(true);
+      setError(null);
+      
+      const cacheKey = `bgr_parent_${parentId}_data`;
       
       // Check localStorage cache first
-      const cachedData = localStorage.getItem('bgr_parent_data');
+      const cachedData = localStorage.getItem(cacheKey);
       if (cachedData) {
-        const parsed = JSON.parse(cachedData);
-        setParentData(parsed.parentData);
-        setCurrentLesson(parsed.currentLesson);
-        setFeedback(parsed.feedback || []);
-        setLoading(false);
-        return;
+        try {
+          const parsed = JSON.parse(cachedData);
+          setParentData(parsed.parentData);
+          setCurrentLesson(parsed.currentLesson);
+          setFeedback(parsed.feedback || []);
+          setLoading(false);
+          // Still hydrate in background to refresh data
+        } catch (err) {
+          console.error('Error parsing cached data:', err);
+          // Continue to API call if cache is invalid
+        }
       }
 
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 500));
+      try {
+        // Hydrate from backend
+        const url = parentApi.hydrate(parentId);
+        const data = await apiRequest(url);
 
-      // Mock API response
-      // TODO: Replace with real API call
-      // const response = await fetch(`${import.meta.env.VITE_API_BASE}/bgr/parent/${parentId}/hydrate`);
-      // const data = await response.json();
+        setParentData(data.parentData || data.parent);
+        setCurrentLesson(data.currentLesson || data.lesson);
+        setFeedback(data.feedback || []);
 
-      const data = {
-        parentData: mockParentData,
-        currentLesson: mockCurrentLesson,
-        feedback: mockFeedback
-      };
+        // Cache in localStorage
+        localStorage.setItem(cacheKey, JSON.stringify({
+          parentData: data.parentData || data.parent,
+          currentLesson: data.currentLesson || data.lesson,
+          feedback: data.feedback || []
+        }));
 
-      setParentData(data.parentData);
-      setCurrentLesson(data.currentLesson);
-      setFeedback(data.feedback);
-
-      // Cache in localStorage
-      localStorage.setItem('bgr_parent_data', JSON.stringify(data));
-
-      setLoading(false);
+        setLoading(false);
+      } catch (err) {
+        console.error('Hydration error:', err);
+        setError(err.message);
+        setLoading(false);
+        
+        // If API fails and we have cached data, use it
+        if (cachedData) {
+          const parsed = JSON.parse(cachedData);
+          setParentData(parsed.parentData);
+          setCurrentLesson(parsed.currentLesson);
+          setFeedback(parsed.feedback || []);
+        }
+      }
     };
 
     hydrate();
-  }, []);
+  }, [parentId]);
 
   return {
     parentData,
     currentLesson,
     feedback,
-    loading
+    loading,
+    error
   };
 };
 
