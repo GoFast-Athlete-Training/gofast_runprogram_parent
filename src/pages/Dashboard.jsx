@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
@@ -13,7 +13,9 @@ import { useHydrateParent } from '../hooks/useHydrateParent.js';
 const Dashboard = () => {
   const navigate = useNavigate();
   const { parentData, currentLesson, loading } = useHydrateParent();
-  const [athleteName] = useState('Alex'); // Demo: Would come from parentData
+  
+  // Demo: Mock athlete name - no real auth
+  const athleteName = 'Johnny';
 
   if (loading) {
     return (
