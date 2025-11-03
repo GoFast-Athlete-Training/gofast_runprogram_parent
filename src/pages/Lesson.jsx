@@ -5,12 +5,15 @@ import Footer from '../components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
 import { ArrowLeft, Clock, MapPin, Calendar } from 'lucide-react';
-import lessonsData from '../data/lessons.json';
+import { useHydrateParent } from '../hooks/useHydrateParent';
 
 const Lesson = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const lesson = lessonsData.find((l) => l.id === id);
+  const { currentLesson } = useHydrateParent();
+  
+  // For demo, if we have a current lesson, use it; otherwise check ID
+  const lesson = currentLesson?.id === id ? currentLesson : null;
 
   if (!lesson) {
     return (
