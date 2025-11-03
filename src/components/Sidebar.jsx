@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Calendar, TrendingUp, Home } from 'lucide-react';
+import { Calendar, TrendingUp, Home, BookOpen } from 'lucide-react';
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -16,6 +16,11 @@ const Sidebar = () => {
       label: 'Athlete Progress',
       path: '/feedback',
       icon: TrendingUp
+    },
+    {
+      label: 'Log Homework',
+      path: '/log-homework',
+      icon: BookOpen
     }
   ];
 

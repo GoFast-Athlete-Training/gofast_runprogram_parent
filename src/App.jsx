@@ -9,6 +9,7 @@ import Success from './pages/Success.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Lesson from './pages/Lesson.jsx';
 import Feedback from './pages/Feedback.jsx';
+import LogHomework from './pages/LogHomework.jsx';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/lesson/:id" element={<Lesson />} />
         <Route path="/feedback" element={<Feedback />} />
+        <Route path="/log-homework" element={<LogHomework />} />
       </Routes>
     </Router>
   );
