@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import LessonBanner from '../components/LessonBanner';
-import RSVPCard from '../components/RSVPCard';
-import SurveyForm from '../components/SurveyForm';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/button';
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.jsx';
+import LessonBanner from '../components/LessonBanner.jsx';
+import RSVPCard from '../components/RSVPCard.jsx';
+import SurveyForm from '../components/SurveyForm.jsx';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card.jsx';
+import { Button } from '../components/ui/button.jsx';
 import { Calendar, Activity } from 'lucide-react';
-import { useHydrateParent } from '../hooks/useHydrateParent';
+import { useHydrateParent } from '../hooks/useHydrateParent.js';
 
 const Dashboard = () => {
   const navigate = useNavigate();

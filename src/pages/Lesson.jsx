@@ -1,11 +1,11 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
-import { Button } from '../components/ui/button';
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.jsx';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card.jsx';
+import { Button } from '../components/ui/button.jsx';
 import { ArrowLeft, Clock, MapPin, Calendar } from 'lucide-react';
-import { useHydrateParent } from '../hooks/useHydrateParent';
+import { useHydrateParent } from '../hooks/useHydrateParent.js';
 
 const Lesson = () => {
   const { id } = useParams();

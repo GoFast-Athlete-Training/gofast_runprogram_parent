@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from './ui/button';
+import { Button } from './ui/button.jsx';
 import { Running } from 'lucide-react';
 
 const Header = () => {

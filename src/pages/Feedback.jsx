@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import FeedbackCard from '../components/FeedbackCard';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card';
+import Header from '../components/Header.jsx';
+import Footer from '../components/Footer.jsx';
+import FeedbackCard from '../components/FeedbackCard.jsx';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card.jsx';
 import { MessageSquare } from 'lucide-react';
-import { useHydrateParent } from '../hooks/useHydrateParent';
+import { useHydrateParent } from '../hooks/useHydrateParent.js';
 
 const Feedback = () => {
   const { parentData, feedback, loading } = useHydrateParent();

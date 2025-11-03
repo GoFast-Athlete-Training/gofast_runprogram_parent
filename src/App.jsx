@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
 
 // Import pages
-import Home from './pages/Home';
-import Register from './pages/Register';
-import Success from './pages/Success';
-import Dashboard from './pages/Dashboard';
-import Lesson from './pages/Lesson';
-import Feedback from './pages/Feedback';
+import Home from './pages/Home.jsx';
+import Register from './pages/Register.jsx';
+import Success from './pages/Success.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import Lesson from './pages/Lesson.jsx';
+import Feedback from './pages/Feedback.jsx';
 
 function App() {
   return (
