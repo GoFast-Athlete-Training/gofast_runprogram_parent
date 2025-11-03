@@ -1,22 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import FeedbackCard from '../components/FeedbackCard.jsx';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card.jsx';
 import { MessageSquare } from 'lucide-react';
-import { useHydrateParent } from '../hooks/useHydrateParent.js';
+
+// Hardcoded feedback data for demo
+const feedback = [
+  {
+    rating: 4,
+    date: 'January 8, 2025',
+    notes: 'Alex showed great improvement in endurance this week. Maintained good pace throughout the workout. Continue working on breathing technique.'
+  }
+];
 
 const Feedback = () => {
-  const { parentData, feedback, loading } = useHydrateParent();
-  const [athleteName] = useState('Alex'); // Demo: Would come from parentData
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p>Loading...</p>
-      </div>
-    );
-  }
+  const athleteName = 'Alex'; // Demo: Would come from parentData
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
