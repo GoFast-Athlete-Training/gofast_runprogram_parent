@@ -15,10 +15,10 @@ const Header = () => {
         </div>
         <nav className="flex items-center space-x-4">
           <Button variant="ghost" onClick={() => navigate('/dashboard')}>
-            Dashboard
+            Weekly Lesson Outlook
           </Button>
           <Button variant="ghost" onClick={() => navigate('/feedback')}>
-            Feedback
+            Athlete Progress
           </Button>
         </nav>
       </div>

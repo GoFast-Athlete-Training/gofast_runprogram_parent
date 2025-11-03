@@ -22,9 +22,10 @@ const LessonBanner = ({ lesson }) => {
   return (
     <Card className="bg-gradient-to-r from-orange-500 to-red-500 text-white mb-6">
       <CardHeader>
-        <CardDescription className="text-orange-100 text-lg">
-          {lesson.description}
-        </CardDescription>
+        <div className="bg-white/20 backdrop-blur-sm rounded-lg px-6 py-4 mb-4 border-2 border-white/30">
+          <p className="text-2xl font-bold text-white mb-2">Character Focus</p>
+          <p className="text-3xl font-extrabold text-white">{lesson.weekFocus}</p>
+        </div>
       </CardHeader>
       <CardContent>
         {lesson.goal && (

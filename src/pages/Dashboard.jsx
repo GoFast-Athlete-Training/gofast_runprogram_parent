@@ -7,7 +7,7 @@ import RSVPCard from '../components/RSVPCard.jsx';
 import SurveyForm from '../components/SurveyForm.jsx';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card.jsx';
 import { Button } from '../components/ui/button.jsx';
-import { Calendar, Activity } from 'lucide-react';
+import { Calendar, Activity, BookOpen, MessageSquare, TrendingUp } from 'lucide-react';
 
 // Hardcoded workout data for Week 7: Dependability & Loyalty
 const currentLesson = {
@@ -119,31 +119,49 @@ const Dashboard = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => navigate(`/lesson/${currentLesson.id}`)}>
+          <Card 
+            className="cursor-pointer hover:shadow-lg transition-shadow border-2 hover:border-orange-300"
+            onClick={() => navigate(`/lesson/${currentLesson.id}`)}
+          >
             <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
-                <Activity className="w-6 h-6" />
+              <div className="w-16 h-16 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
+                <BookOpen className="w-8 h-8" />
               </div>
-              <CardTitle>View Lessons</CardTitle>
-              <CardDescription>See all workouts and lesson plans</CardDescription>
+              <CardTitle>View Full Lesson</CardTitle>
+              <CardDescription>See complete workout plan, discussion topics, and home assignments</CardDescription>
             </CardHeader>
+            <CardContent>
+              <Button variant="outline" className="w-full">
+                View Lesson
+              </Button>
+            </CardContent>
           </Card>
-          <Card className="cursor-pointer hover:shadow-lg transition-shadow" onClick={() => navigate('/feedback')}>
+          
+          <Card 
+            className="cursor-pointer hover:shadow-lg transition-shadow border-2 hover:border-orange-300"
+            onClick={() => navigate('/feedback')}
+          >
             <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center mb-4">
-                <Activity className="w-6 h-6" />
+              <div className="w-16 h-16 rounded-lg bg-green-100 text-green-600 flex items-center justify-center mb-4">
+                <MessageSquare className="w-8 h-8" />
               </div>
               <CardTitle>Coach Feedback</CardTitle>
-              <CardDescription>View feedback from coaches</CardDescription>
+              <CardDescription>View feedback and notes from your child's coach</CardDescription>
             </CardHeader>
+            <CardContent>
+              <Button variant="outline" className="w-full">
+                View Feedback
+              </Button>
+            </CardContent>
           </Card>
-          <Card>
+          
+          <Card className="border-2 border-gray-200 opacity-75">
             <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4">
-                <Activity className="w-6 h-6" />
+              <div className="w-16 h-16 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center mb-4">
+                <TrendingUp className="w-8 h-8" />
               </div>
-              <CardTitle>Progress</CardTitle>
-              <CardDescription>Track your child's progress</CardDescription>
+              <CardTitle>Progress Tracking</CardTitle>
+              <CardDescription>Coming soon - track your child's running progress over time</CardDescription>
             </CardHeader>
           </Card>
         </div>
