@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
+import Sidebar from '../components/Sidebar.jsx';
 import LessonBanner from '../components/LessonBanner.jsx';
 import RSVPCard from '../components/RSVPCard.jsx';
 import SurveyForm from '../components/SurveyForm.jsx';
@@ -69,9 +70,11 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Header />
-      <main className="flex-1 container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gray-50 flex">
+      <Sidebar />
+      <div className="flex-1 flex flex-col">
+        <Header />
+        <main className="flex-1 container mx-auto px-4 py-8">
         {/* School Banner */}
         <div className="mb-6 bg-orange-500 text-white py-3 px-6 rounded-lg text-center">
           <h2 className="text-2xl font-bold">{currentLesson.school}</h2>
@@ -165,8 +168,9 @@ const Dashboard = () => {
             </CardHeader>
           </Card>
         </div>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 };

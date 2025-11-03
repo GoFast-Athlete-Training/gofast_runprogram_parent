@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
+import Sidebar from '../components/Sidebar.jsx';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card.jsx';
 import { Button } from '../components/ui/button.jsx';
 import { Calendar, ArrowLeft, Star } from 'lucide-react';
@@ -63,9 +64,11 @@ const Feedback = () => {
   if (selectedWeek) {
     const feedback = feedbackByWeek.find(f => f.week === selectedWeek);
     return (
-      <div className="min-h-screen bg-gray-50 flex flex-col">
-        <Header />
-        <main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
+      <div className="min-h-screen bg-gray-50 flex">
+        <Sidebar />
+        <div className="flex-1 flex flex-col">
+          <Header />
+          <main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
           <Button
             variant="ghost"
             onClick={() => setSelectedWeek(null)}
@@ -117,16 +120,19 @@ const Feedback = () => {
               </div>
             </CardContent>
           </Card>
-        </main>
-        <Footer />
+          </main>
+          <Footer />
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <Header />
-      <main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
+    <div className="min-h-screen bg-gray-50 flex">
+      <Sidebar />
+      <div className="flex-1 flex flex-col">
+        <Header />
+        <main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Athlete Progress</h1>
           <p className="text-gray-600">
@@ -178,8 +184,9 @@ const Feedback = () => {
             </Card>
           ))}
         </div>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 };
