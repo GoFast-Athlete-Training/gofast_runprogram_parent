@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button.jsx';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card.jsx';
-import { Running, Users } from 'lucide-react';
+import { Activity, Users } from 'lucide-react';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const Home = () => {
             >
               <CardHeader>
                 <div className="w-16 h-16 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center mb-4">
-                  <Running className="w-8 h-8" />
+                  <Activity className="w-8 h-8" />
                 </div>
                 <CardTitle>{site.name}</CardTitle>
                 <CardDescription>{site.location}</CardDescription>
