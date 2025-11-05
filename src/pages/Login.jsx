@@ -7,8 +7,8 @@ import { Users } from 'lucide-react';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('parent@example.com');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('parent@boysgottarun.com');
+  const [password, setPassword] = useState('demo123');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -37,9 +37,9 @@ const Login = () => {
           <div className="w-20 h-20 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center mx-auto mb-4">
             <Users className="w-10 h-10" />
           </div>
-          <CardTitle className="text-3xl">Welcome Parent</CardTitle>
-          <CardDescription>
-            Sign in to view your child's running journey
+          <CardTitle className="text-3xl">Parent Login</CardTitle>
+          <CardDescription className="text-base">
+            Each parent will get a special login to make a unique profile. You can also set the onboarding flow with videos.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -51,7 +51,7 @@ const Login = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                placeholder="parent@example.com"
+                placeholder="parent@boysgottarun.com"
               />
             </div>
             <div>
@@ -61,7 +61,7 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                placeholder="parents"
+                placeholder="Enter your password"
               />
             </div>
             <Button type="submit" className="w-full" size="lg" disabled={loading}>
@@ -69,7 +69,7 @@ const Login = () => {
             </Button>
           </form>
           <p className="text-xs text-gray-500 mt-4 text-center">
-            Demo: parent@example.com / parents
+            Demo: Credentials are pre-filled. Click "Sign In" to continue.
           </p>
           <div className="mt-4 text-center">
             <button 

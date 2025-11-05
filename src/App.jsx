@@ -4,6 +4,7 @@ import './index.css';
 
 // Import pages
 import Welcome from './pages/Welcome.jsx';
+import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
 import Success from './pages/Success.jsx';
 import Dashboard from './pages/Dashboard.jsx';
@@ -16,7 +17,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Welcome />} />
-        <Route path="/login" element={<Navigate to="/" replace />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/success" element={<Success />} />
         <Route path="/dashboard" element={<Dashboard />} />

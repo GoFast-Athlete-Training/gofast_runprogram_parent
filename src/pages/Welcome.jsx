@@ -16,16 +16,16 @@ const Welcome = () => {
           </div>
           <CardTitle className="text-4xl mb-4">Welcome Parent!</CardTitle>
           <CardDescription className="text-lg">
-            This is a basic demo of how you would get info about your child in the Boys Gotta Run program.
+            Each parent will get a special login to make a unique profile. You can also set the onboarding flow with videos.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <Button 
-            onClick={() => navigate('/dashboard')} 
+            onClick={() => navigate('/login')} 
             size="lg" 
             className="w-full"
           >
-            Take a look inside
+            Take a Look Inside
             <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
         </CardContent>
